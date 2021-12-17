@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "MyButton.vue"
+  name: "my-button"
 }
 </script>
 
