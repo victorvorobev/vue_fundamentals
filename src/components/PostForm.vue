@@ -13,17 +13,22 @@
         type="text"
         placeholder="Body"
     >
-    <button
-        class="btn"
+    <my-button
+        style="align-self: flex-end"
         @click="createPost"
     >
       Create
-    </button>
+    </my-button>
   </form>
 </template>
 
 <script>
+import MyButton from "@/components/UI/MyButton";
+
 export default {
+  components: {
+    MyButton
+  },
   data() {
     return {
       post: {
