@@ -51,14 +51,6 @@ form {
   flex-direction: column;
 }
 
-.btn {
-  margin-top: 15px;
-  align-self: flex-end;
-  padding: 10px 15px;
-  background: none;
-  color: teal;
-  border: 1px solid teal;
-}
 
 .input {
   width: 100%;
