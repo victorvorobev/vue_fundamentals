@@ -8,8 +8,8 @@
         Create post
       </my-button>
       <my-select
-        v-model="selectedSort"
-        :options="sortOptions"
+          v-model="selectedSort"
+          :options="sortOptions"
       />
     </div>
     <my-dialog v-model:show="dialogVisible">
@@ -18,7 +18,7 @@
       />
     </my-dialog>
     <post-list
-        :posts="posts"
+        :posts="sortedPosts"
         @remove="removePost"
         v-if="!isPostsLoading"
     />
@@ -76,6 +76,13 @@ export default {
   mounted() {
     this.fetchPosts();
   },
+  computed: {
+    sortedPosts() {
+      return [...this.posts].sort((post1, post2) => {
+        return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])
+      })
+    }
+  }
 }
 </script>
 
