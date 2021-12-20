@@ -1,6 +1,10 @@
 <template>
   <div class="app">
     <h1>Tab with posts</h1>
+    <my-input
+        v-model="searchQuery"
+        placeholder="Search"
+    />
     <div class="app__btns">
       <my-button
           @click="showDialog"
@@ -18,7 +22,7 @@
       />
     </my-dialog>
     <post-list
-        :posts="sortedPosts"
+        :posts="sortedAndSearchedPosts"
         @remove="removePost"
         v-if="!isPostsLoading"
     />
@@ -44,6 +48,7 @@ export default {
       dialogVisible: false,
       isPostsLoading: false,
       selectedSort: '',
+      searchQuery: '',
       sortOptions: [
         {value: 'title', name: 'by title'},
         {value: 'body', name: 'by body'},
@@ -81,7 +86,10 @@ export default {
       return [...this.posts].sort((post1, post2) => {
         return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])
       })
-    }
+    },
+    sortedAndSearchedPosts() {
+      return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    },
   }
 }
 </script>
