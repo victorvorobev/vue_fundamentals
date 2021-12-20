@@ -27,17 +27,11 @@
         v-if="!isPostsLoading"
     />
     <div v-else>Loading...</div>
-    <div class="page__wrapper">
-      <div
-          v-for="pageNumber in totalPages"
-          :key="pageNumber"
-          class="page"
-          :class="{'current-page': page === pageNumber}"
-          @click="changePage(pageNumber)"
-      >
-        {{ pageNumber }}
-      </div>
-    </div>
+    <my-page-wrapper
+        @pageChanged="changePage"
+        :page="page"
+        :totalPages="totalPages"
+    />
   </div>
 </template>
 
@@ -45,13 +39,15 @@
 import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
 import axios from 'axios';
-import MySelect from "./components/UI/MySelect";
+import MySelect from "@/components/UI/MySelect";
+import MyPageWrapper from "@/components/UI/MyPageWrapper";
 
 export default {
   components: {
     MySelect,
     PostList,
     PostForm,
+    MyPageWrapper,
   },
   data() {
     return {
@@ -139,18 +135,5 @@ export default {
   margin: 15px 0;
 }
 
-.page__wrapper {
-  display: flex;
-  margin-top: 15px;
-}
-
-.page {
-  border: 1px solid black;
-  padding: 10px
-}
-
-.current-page {
-  border: 2px solid teal;
-}
 
 </style>
